@@ -1,10 +1,10 @@
 import pandas as pd 
 
-#Note: because of steps that arent coded, eg ArcGIS, need to ensure hardcoded filenames below are correct
+#Note: because of steps that arent coded, eg geocoding in ArcGIS, need to ensure hardcoded filenames below are correct
 
-zip_code = "augmented_zip_only.csv"#this is the zip code output from read_and_aggreage_final
+zip_code = pd.read_csv("augmented_zip_only.csv")#this is the zip code output from read_and_aggreage_final
 
-zip_to_csa_mapping = "zip_code_csa_mapping_only_clean.csv"# this is the output from ArcGIS of running an intersection 
+zip_to_csa_mapping = pd.read_csv("zip_code_csa_mapping_only_clean.csv")# this is the output from ArcGIS of running an intersection 
 								#between zip codes and CSAs, which each row being a mapping of a zip code to a CSA
 
 good_addresses = "GOOD_ADDRESSES_WITH_CSA_MAPPED.csv"
@@ -31,6 +31,9 @@ csa_filter = ['New York-Newark, NY-NJ-CT-PA CSA',
  'Fresno-Madera, CA CSA']
 
 def add_zero(x):
+	"""
+	add back leading zeros dropped from zip codes 
+	"""
 
 	if len(x['zip']) == 4:
 		return "0" + x['zip']
@@ -41,13 +44,21 @@ def add_zero(x):
 	else:
 		return x['zip']
 
-def fix_leading_zeros(df):    
+def fix_leading_zeros(df):
+	"""
+	add back leading zeros dropped from zip codes 
+	"""    
 	df["zip"] = df["zip"].astype(int)
 	df["zip"] = df["zip"].astype(str)
 	df["zip"] = df.apply(lambda x: add_zero(x), axis=1)
 	return df
 
 def map_zip_only_to_csa(zip_code, zip_to_csa_mapping):
+	"""
+	This merges the zip to csa mapping file onto the zip code only file
+	zip_code (str) filepath to file with zip codes and pit counts
+	zip_to_csa_mapping (str) filepath to file with 
+	"""
 	zip_to_csa_mapping = zip_to_csa_mapping.rename(columns={"ZIP_CODE":"zip"})
 	zip_code = fix_leading_zeros(zip_code)
 	zip_to_csa_mapping = fix_leading_zeros(zip_to_csa_mapping)
@@ -57,6 +68,12 @@ def map_zip_only_to_csa(zip_code, zip_to_csa_mapping):
 
 
 def make_find_counts(good_addresses):
+	"""
+	This file merges zip code only file with the good address file to produce the final output of CSAs mapped to total HICPIT counts
+
+	input:
+	good_addresses (str) filepath of output of geocoded good address file, this contains mapping of CSA to Pit counts
+	"""
 	zips = map_zip_only_to_csa(zip_code, zip_to_csa_mapping)
 	if 'Sum PIT Count' in df.columns:
 		good_addresses = good_addresses.rename(columns={"Sum PIT Count":"PIT Count"})
