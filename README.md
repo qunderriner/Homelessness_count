@@ -24,7 +24,7 @@ The files themselves should be decently well documented, but this is how they fi
 3. Post_geocoding.py: 
 The good addresses file should be geocoded to CSAs using the intersect feature on ArcGIS. On this github there is a file that has a mapping of all zip codes to CSAs (zip_code_csa_mapping_only_clean.csv - created using ArcGIS), which is used in this function to create a mapping between the zipcode only file and the CSAs. This file will do this mapping, and merge the data with the good address data from ArcGis. This file then groups the data and outputs a csv with a mapping of HIC PIT counts to CSAs. 
 
-4. Pull_it_together.py - this file will take the mapping of CSAs to HIC PIT counts output from Post_geocoding and augment it with CSA level data from ACS and Zillow, outputing a csv with this completed data set. It calls the files Zillow.py and ACS_v2.py, described below. 
+4. Pull_it_together.py - this file will take the mapping of CSAs to HIC PIT counts output from Post_geocoding and augment it with CSA level data from ACS and Zillow, outputing a csv with this completed data set. It calls the files Zillow.py and ACS_v2.py, described below. Note, sometimes calls to the ACS api fail, so if an error is coming from the call to that function, its worth trying another time or two. 
 
 Zillow.py - currently pulling data on rental cost to income ratio, housing costs, rental cost, and median income. Need to download csvs (https://www.zillow.com/research/data/) and follow instructions in file if you want to add more zillow data. 
 
