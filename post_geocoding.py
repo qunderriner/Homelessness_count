@@ -74,6 +74,7 @@ def make_find_counts(good_addresses):
 	input:
 	good_addresses (str) filepath of output of geocoded good address file, this contains mapping of CSA to Pit counts
 	"""
+	good_addresses = pd.read_csv(good_addresses)
 	zips = map_zip_only_to_csa(zip_code, zip_to_csa_mapping)
 	if 'Sum PIT Count' in df.columns:
 		good_addresses = good_addresses.rename(columns={"Sum PIT Count":"PIT Count"})
