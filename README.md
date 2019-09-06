@@ -11,4 +11,14 @@ In the HUD data there are varying amounts of information about a given facility 
 
 Once each HIC PIT count can be mapped to a CSA we rejoin the data and augment it with data from the ACS (reported at the CSA level) and Zillow data (reported at the metropolitan statistical area (MSA) level, which can be mapped to CSAs). We then start our analysis. 
 
+HOW TO USE THESE FILES:
 
+Unfortunetly, some elements of this work cannot be automated (geocoding with ArcGIS, manually filling in some missing data) so there is some input needed (as well as some changing of hardcoded dates as you process data from different years). This is generally how the files fit together:
+
+Split_data.py - reads in PIT data from a CSV downloaded from this hud https://www.hudexchange.info/resource/3031/pit-and-hic-data-since-2007/ site. Main thing to change here is the hardcoded pit_data_csv filepath for data from the above link. 
+
+
+
+Homeless Pit Count Exploratory Analysis .ipynb: as the name suggests, is some initial exploratory work with the data. 
+
+the Final_Data folder contains the output of running through this process on 2017 data (eg, it contains mapping of CSAs to PIT Count data, some ACS and Zillow Data) 
