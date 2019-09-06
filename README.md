@@ -11,11 +11,11 @@ In the HUD data there are varying amounts of information about a given facility 
 
 Once each HIC PIT count can be mapped to a CSA we rejoin the data and augment it with data from the ACS (reported at the CSA level) and Zillow data (reported at the metropolitan statistical area (MSA) level, which can be mapped to CSAs). We then start our analysis. 
 
-HOW TO USE THESE FILES: Unfortunetly, some elements of this work cannot be automated (geocoding with ArcGIS, manually filling in some missing data, zillow economic data) so there is some input needed (as well as some changing of hardcoded dates as you process data from different years). 
+HOW TO USE THESE FILES: Unfortunetly, some elements of this work cannot be automated (geocoding with ArcGIS, manually filling in some missing data, zillow economic data) so there is some input needed (as well as some changing of hardcoded dates as you process data from different years).  
 
 (file numbers indicate order to call files if starting this process from scratch. Some are not numbered as they are called only by other fuctions).
 
-This is how the files fit together:
+The files themselves should be decently well documented, but this is how they fit together:
 
 1. Split_data.py - reads in PIT data from a CSV downloaded from this hud https://www.hudexchange.info/resource/3031/pit-and-hic-data-since-2007/ site. Main thing to change here is the hardcoded pit_data_csv filepath for data from the above link. This file will produce 3 CSV files from the HUD data: good addresses (those that are ready for geocoding with ArcGIS or something similiar), addresses that only contain zip codes (and not street addresses) and those files that do not contain address information. Ideally, the latter is a small number, and based on the name of the organization, can be manually filled out.
 
