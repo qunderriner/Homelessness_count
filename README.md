@@ -15,7 +15,7 @@ HOW TO USE THESE FILES: Unfortunetly, some elements of this work cannot be autom
 
 (file numbers indicate order to call files if starting this process from scratch. Some are not numbered as they are called only by other fuctions).
 
-The files themselves should be decently well documented, but this is how they fit together. Once the correct hardcoded elements have been changed, as documented below (as well as within the files), files 1-4 can all be run from the command line with python <filename>
+The files themselves should be decently well documented, but this is how they fit together. Once the correct hardcoded elements have been changed, as documented below (as well as within the files), files 1-4 can all be run from the command line with python < filename >
 
 1. Split_data.py - reads in PIT data from a CSV downloaded from this hud https://www.hudexchange.info/resource/3031/pit-and-hic-data-since-2007/ site. Main thing to change here is the hardcoded pit_data_csv filepath for data from the above link. This file will produce 3 CSV files from the HUD data: good addresses (those that are ready for geocoding with ArcGIS or something similiar), addresses that only contain zip codes (and not street addresses) and those files that do not contain address information. Ideally, the latter is a small number, and based on the name of the organization, can be manually filled out.
 
