@@ -114,7 +114,7 @@ def merge_data(pit_data_csv,year):
 	merged["total_in_labor_force"] = merged["total_in_labor_force"].astype(int)
 
 	#creation of new collumns from ACS data 
-	merged["overcrowded"] = merged["two_or_more_occupants_per_room_renter"] + merged["1.5_2_occupants_per_room_renter"] / merged["total_renter_occupied"]
+	merged["overcrowded"] = (merged["two_or_more_occupants_per_room_renter"] + merged["1.5_2_occupants_per_room_renter"]) / merged["total_renter_occupied"]
 	merged["Percent_of_Market_for_Rent"] = merged["total_renter_occupied"] / merged["total_number_units"]
 	merged["Workforce_Participation_Rate"] = merged["total_in_labor_force"] / merged["population"]
 
@@ -129,7 +129,7 @@ def merge_data(pit_data_csv,year):
 
 def go():
 
-	merge_data(df,year)
+	merge_data(pit_data_csv,year)
 
 
 if __name__ == "__main__":
